@@ -1,7 +1,7 @@
 #jinja2: trim_blocks: True, lstrip_blocks: True
 {{ ansible_managed | comment }}
 providers:
-{% if treafik_providers.file.enabled %}
+{% if traefik_providers.file.enabled %}
   file:
     filename: "{{ traefik_config_dir}}/traefik_dynamic.yml"
 {% endif %}
