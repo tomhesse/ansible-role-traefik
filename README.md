@@ -65,6 +65,12 @@ Enable the API and the Traefik dashboard.
 
 Entrypoints used by your Traefik configuration.
 
+    traefik_providers:
+      file:
+        enabled: true
+
+The file provider can be disabled in case it's not required.
+
     traefik_certificate_resolvers:
       - name: letsencrypt_staging
         acme:
