@@ -11,3 +11,7 @@ traefik_config_dir: /etc/traefik
 
 # Local path to stash the archive and its extraction
 traefik_archive_path: "/tmp"
+
+treafik_providers:
+  file:
+    enabled: true
