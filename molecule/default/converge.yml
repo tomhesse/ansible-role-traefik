@@ -37,6 +37,20 @@
             address: :8080
         traefik_api_enabled: true
         traefik_dashboard_enabled: true
+        traefik_providers:
+          docker:
+            enabled: true
+            useBindPortIP: true
+            exposedByDefault: true
+            network: traefik
+            defaultRule: Host(`{{ '{{' }} normalize .Name {{  '}}' }}`)
+            httpClientTimeout: 10
+            watch: false
+            tls:
+              insecureSkipVerify: true
+            allowEmptyServices: false
+          file:
+            enabled: true
         traefik_services:
           - name: example-service
             loadBalancer:
