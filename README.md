@@ -66,10 +66,12 @@ Enable the API and the Traefik dashboard.
 Entrypoints used by your Traefik configuration.
 
     traefik_providers:
-      file:
+      docker:
         enabled: true
+      file:
+        enabled: false
 
-The file provider can be disabled in case it's not required.
+The provider config tries to follow the traefik config. See molecule/converge.yml for an example.
 
     traefik_certificate_resolvers:
       - name: letsencrypt_staging
