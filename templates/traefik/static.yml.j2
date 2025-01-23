@@ -16,8 +16,7 @@ providers:
       traefik_providers.docker.tls.ca is defined and traefik_providers.docker.tls.ca is not none or
       traefik_providers.docker.tls.cert is defined and traefik_providers.docekr.tls.cert is not none or
       traefik_providers.docker.tls.key is defined and traefik_providers.docekr.tls.key is not none or
-      traefik_providers.docker.tls.insecureSkipVerify is defined and traefik_providers.docekr.tls.insecureSkipVerify is not none
-      %}
+      traefik_providers.docker.tls.insecureSkipVerify is defined and traefik_providers.docekr.tls.insecureSkipVerify is not none %}
   docker:
   {% if traefik_providers.docker.endpoint is defined and traefik_providers.docker.endpoint is not none %}
     endpoint: "{{ traefik_providers.docker.endpoint }}"
@@ -52,8 +51,7 @@ providers:
   {% if traefik_providers.docker.tls.ca is defined and traefik_providers.docker.tls.ca is not none or
         traefik_providers.docker.tls.cert is defined and traefik_providers.docker.tls.cert is not none or
         traefik_providers.docker.tls.key is defined and traefik_providers.docker.tls.key is not none or
-        traefik_providers.docker.tls.insecureSkipVerify is defined and traefik_providers.docker.tls.insecureSkipVerify is not none
-        %}
+        traefik_providers.docker.tls.insecureSkipVerify is defined and traefik_providers.docker.tls.insecureSkipVerify is not none %}
     tls:
     {% if traefik_providers.docker.tls.ca is defined and traefik_providers.docker.tls.ca is not none %}
       ca: "{{ traefik_providers.docker.tls.ca }}"
