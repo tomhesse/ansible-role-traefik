@@ -1,7 +1,81 @@
 #jinja2: trim_blocks: True, lstrip_blocks: True
 {{ ansible_managed | comment }}
 providers:
-{% if traefik_providers.file.enabled %}
+{% if traefik_providers.docker.enabled is defined and traefik_providers.docker.enabled %}
+{% if traefik_providers.docker.endpoint is defined and traefik_providers.docker.endpoint is not none or
+      traefik_providers.docker.username is defined and traefik_providers.docker.username is not none or
+      traefik_providers.docker.password is defined and traefik_providers.docker.password is not none or
+      traefik_providers.docker.useBindPortIP is defined and traefik_providers.docker.useBindPortIP is not none or
+      traefik_providers.docker.exposedByDefault is defined and traefik_providers.docker.exposedByDefault is not none or
+      traefik_providers.docker.network is defined and traefik_providers.docker.network is not none or
+      traefik_providers.docker.defaultRule is defined and traefik_providers.docker.defaultRule is not none or
+      traefik_providers.docker.httpClientTimeout is defined and traefik_providers.docker.httpClientTimeout is not none or
+      traefik_providers.docker.watch is defined and traefik_providers.docker.watch is not none or
+      traefik_providers.docker.constraints is defined and traefik_providers.docker.constraints is not none or
+      traefik_providers.docker.allowEmptyServices is defined and traefik_providers.docker.allowEmptyServices is not none or
+      traefik_providers.docker.tls.ca is defined and traefik_providers.docker.tls.ca is not none or
+      traefik_providers.docker.tls.cert is defined and traefik_providers.docekr.tls.cert is not none or
+      traefik_providers.docker.tls.key is defined and traefik_providers.docekr.tls.key is not none or
+      traefik_providers.docker.tls.insecureSkipVerify is defined and traefik_providers.docekr.tls.insecureSkipVerify is not none
+      %}
+  docker:
+  {% if traefik_providers.docker.endpoint is defined and traefik_providers.docker.endpoint is not none %}
+    endpoint: "{{ traefik_providers.docker.endpoint }}"
+  {% endif %}
+  {% if traefik_providers.docker.username is defined and traefik_providers.docker.username is not none %}
+    username: "{{ traefik_providers.docker.username }}"
+  {% endif %}
+  {% if traefik_providers.docker.password is defined and traefik_providers.docker.password is not none %}
+    password: "{{ traefik_providers.docker.password }}"
+  {% endif %}
+  {% if traefik_providers.docker.useBindPortIP is defined and traefik_providers.docker.useBindPortIP is not none %}
+    useBindPortIP: {{ 'true' if traefik_providers.docker.useBindPortIP else 'false' }}
+  {% endif %}
+  {% if traefik_providers.docker.exposedByDefault is defined and traefik_providers.docker.exposedByDefault is not none %}
+    exposedByDefault: {{ 'true' if traefik_providers.docker.exposedByDefault else 'false' }}
+  {% endif %}
+  {% if traefik_providers.docker.network is defined and traefik_providers.docker.network is not none %}
+    network: "{{ traefik_providers.docker.network }}"
+  {% endif %}
+  {% if traefik_providers.docker.defaultRule is defined and traefik_providers.docker.defaultRule is not none %}
+    defaultRule: "{{ traefik_providers.docker.defaultRule }}"
+  {% endif %}
+  {% if traefik_providers.docker.httpClientTimeout is defined and traefik_providers.docker.httpClientTimeout is not none %}
+    httpClientTimeout: "{{ traefik_providers.docker.httpClientTimeout }}"
+  {% endif %}
+  {% if traefik_providers.docker.watch is defined and traefik_providers.docker.watch is not none %}
+    watch: {{ 'true' if traefik_providers.docker.watch else 'false' }}
+  {% endif %}
+  {% if traefik_providers.docker.constraints is defined and traefik_providers.docker.constraints is not none %}
+    constraints: "{{ traefik_providers.docker.constraints }}"
+  {% endif %}
+  {% if traefik_providers.docker.tls.ca is defined and traefik_providers.docker.tls.ca is not none or
+        traefik_providers.docker.tls.cert is defined and traefik_providers.docker.tls.cert is not none or
+        traefik_providers.docker.tls.key is defined and traefik_providers.docker.tls.key is not none or
+        traefik_providers.docker.tls.insecureSkipVerify is defined and traefik_providers.docker.tls.insecureSkipVerify is not none
+        %}
+    tls:
+    {% if traefik_providers.docker.tls.ca is defined and traefik_providers.docker.tls.ca is not none %}
+      ca: "{{ traefik_providers.docker.tls.ca }}"
+    {% endif %}
+    {% if traefik_providers.docker.tls.cert is defined and traefik_providers.docker.tls.cert is not none %}
+      cert: "{{ traefik_providers.docker.tls.cert }}"
+    {% endif %}
+    {% if traefik_providers.docker.tls.key is defined and traefik_providers.docker.tls.key is not none %}
+      key: "{{ traefik_providers.docker.tls.key }}"
+    {% endif %}
+    {% if traefik_providers.docker.tls.insecureSkipVerify is defined and traefik_providers.docker.tls.insecureSkipVerify is not none %}
+      insecureSkipVerify: {{ 'true' if traefik_providers.docker.tls.insecureSkipVerify else 'false' }}
+    {% endif %}
+  {% endif %}
+  {% if traefik_providers.docker.allowEmptyServices is defined and traefik_providers.docker.allowEmptyServices is not none %}
+    allowEmptyServices: {{ 'true' if traefik_providers.docker.allowEmptyServices else 'false' }}
+  {% endif %}
+{% else %}
+  docker: {}
+{% endif %}
+{% endif %}
+{% if traefik_providers.file.enabled is defined and traefik_providers.file.enabled %}
   file:
     filename: "{{ traefik_config_dir}}/traefik_dynamic.yml"
 {% endif %}
